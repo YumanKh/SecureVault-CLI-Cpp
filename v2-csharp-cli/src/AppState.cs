@@ -7,6 +7,7 @@ namespace SecureVault
     public enum AppState {
         LOGIN_SCREEN,
         MAIN_MENU,
+        QUIT,
     }
 
 }
