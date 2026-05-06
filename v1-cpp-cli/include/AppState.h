@@ -1,0 +1,12 @@
+#pragma once
+#include <iostream>
+
+enum AppState{
+	LOGIN_SCREEN,
+	MAIN_MENU,
+	PASSWORD_MANAGER,
+	PASSWORD_STRENGTH_ANALYZER,
+	PASSWORD_GENERATOR,
+	SECURE_NOTES,
+	QUIT,
+};
