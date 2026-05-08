@@ -40,7 +40,9 @@ namespace SecureVault
                 case 1:
                     state = AppState.PASSWORD_MANAGER;
                     break;
-
+                case 2:
+                    state = AppState.PASSWORD_STRENGTH_ANALYZER;
+                    break;
             }
         }
         public void Run()
@@ -51,6 +53,7 @@ namespace SecureVault
                 else if (state == AppState.LOGIN_SCREEN) { new Login().handleLogin(); }
                 else if (state == AppState.MAIN_MENU) { handleMainMenu(); }
                 else if (state == AppState.PASSWORD_MANAGER) { new PasswordManager().handlePasswordManager(); }
+                else if (state == AppState.PASSWORD_STRENGTH_ANALYZER) { new PasswordStrengthAnalyzer().handlePasswordStrengthAnalyzer(); }
 
             }
         }

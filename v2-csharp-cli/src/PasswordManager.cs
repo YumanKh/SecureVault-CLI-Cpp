@@ -141,9 +141,9 @@ namespace SecureVault
             List<PasswordEntry> entries = new List<PasswordEntry>();
 
             Console.WriteLine("Enter website and username to delete the password.");
-            Console.WriteLine("Enter website: ");
+            Console.Write("Enter website: ");
             website = Console.ReadLine();
-            Console.WriteLine("Enter username: ");
+            Console.Write("Enter username: ");
             username = Console.ReadLine();
 
             try
@@ -173,8 +173,8 @@ namespace SecureVault
                             }
                         }
                     }
-                    if (found) { Console.WriteLine("Password deleted successfully.\n"); }
-                    else { Console.WriteLine("Cannot find entry.\n"); }
+                    if (found) { Console.WriteLine("\nPassword deleted successfully."); }
+                    else { Console.WriteLine("\nCannot find entry."); }
                 }
             }
             catch (Exception) { Console.WriteLine("Error: file not found.\n"); }

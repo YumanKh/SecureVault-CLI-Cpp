@@ -8,7 +8,7 @@ namespace SecureVault
         LOGIN_SCREEN,
         MAIN_MENU,
         PASSWORD_MANAGER,
+        PASSWORD_STRENGTH_ANALYZER,
         QUIT,
     }
-
 }
