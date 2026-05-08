@@ -151,6 +151,7 @@ namespace SecureVault
                 using (StreamReader reader = new StreamReader("passwords.txt"))
                 {
                     string line;
+                    bool found = false;
                     while ((line = reader.ReadLine()) != null)
                     {
                         string[] parts = line.Split('|');
@@ -158,26 +159,29 @@ namespace SecureVault
                         {
                             if (parts[0] != website || parts[1] != username)
                             {
-                                website = parts[0];
-                                username = parts[1];
-                                password = parts[2];
+                                string fileWebsite = parts[0];
+                                string fileUsername = parts[1];
+                                string filePassword = parts[2];
 
                                 entries.Add(new PasswordEntry
                                 {
-                                    Website = website,
-                                    Username = username,
-                                    Password = password
+                                    Website = fileWebsite,
+                                    Username = fileUsername,
+                                    Password = filePassword
                                 });
+                                found = true;
                             }
                         }
                     }
+                    if (found) { Console.WriteLine("Password deleted successfully.\n"); }
+                    else { Console.WriteLine("Cannot find entry.\n"); }
                 }
             }
             catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
 
             try
             {
-                using (StreamWriter writer = new StreamWriter("Error: file not found.\n"))
+                using (StreamWriter writer = new StreamWriter("passwords.txt"))
                 {
                     foreach (PasswordEntry entry in entries) { writer.WriteLine($"{entry.Website}|{entry.Username}|{entry.Password}"); }
                 }
