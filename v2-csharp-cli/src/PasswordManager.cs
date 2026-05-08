@@ -41,6 +41,9 @@ namespace SecureVault
                 case 3:
                     listPassword();
                     break;
+                case 4:
+                    deletePassword();
+                    break;
             }
         }
         public void addPassword()
@@ -131,6 +134,55 @@ namespace SecureVault
                     foreach (PasswordEntry entry in entries) { Console.WriteLine($"Password for {entry.Website} ({entry.Username}): {entry.Password}");}
                 }
             } catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
+        }
+        public void deletePassword() 
+        { 
+            string website, username, password;
+            List<PasswordEntry> entries = new List<PasswordEntry>();
+
+            Console.WriteLine("Enter website and username to delete the password.");
+            Console.WriteLine("Enter website: ");
+            website = Console.ReadLine();
+            Console.WriteLine("Enter username: ");
+            username = Console.ReadLine();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader("passwords.txt"))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 3)
+                        {
+                            if (parts[0] != website || parts[1] != username)
+                            {
+                                website = parts[0];
+                                username = parts[1];
+                                password = parts[2];
+
+                                entries.Add(new PasswordEntry
+                                {
+                                    Website = website,
+                                    Username = username,
+                                    Password = password
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("Error: file not found.\n"))
+                {
+                    foreach (PasswordEntry entry in entries) { writer.WriteLine($"{entry.Website}|{entry.Username}|{entry.Password}"); }
+                }
+            }
+            catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
         }
     }
 }
