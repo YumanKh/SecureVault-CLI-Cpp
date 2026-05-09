@@ -9,6 +9,7 @@ namespace SecureVault
         MAIN_MENU,
         PASSWORD_MANAGER,
         PASSWORD_STRENGTH_ANALYZER,
+        PASSWORD_GENERATOR,
         QUIT,
     }
 }

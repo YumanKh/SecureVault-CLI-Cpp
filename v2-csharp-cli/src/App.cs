@@ -43,17 +43,21 @@ namespace SecureVault
                 case 2:
                     state = AppState.PASSWORD_STRENGTH_ANALYZER;
                     break;
+                case 3:
+                    state = AppState.PASSWORD_GENERATOR;
+                    break;
             }
         }
         public void Run()
         {
             while (isRunning)
             {
-                if (state == AppState.QUIT) { isRunning = false;}
+                if (state == AppState.QUIT) { isRunning = false; }
                 else if (state == AppState.LOGIN_SCREEN) { new Login().handleLogin(); }
                 else if (state == AppState.MAIN_MENU) { handleMainMenu(); }
                 else if (state == AppState.PASSWORD_MANAGER) { new PasswordManager().handlePasswordManager(); }
                 else if (state == AppState.PASSWORD_STRENGTH_ANALYZER) { new PasswordStrengthAnalyzer().handlePasswordStrengthAnalyzer(); }
+                else if (state == AppState.PASSWORD_GENERATOR) { new PasswordGenerator().handlePasswordGenerator(); }
 
             }
         }
