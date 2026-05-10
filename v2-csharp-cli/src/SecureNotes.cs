@@ -95,7 +95,55 @@ namespace SecureVault
                         }
                     }
                 }
-            } catch (Exception) { Console.WriteLine("Error reading file.\n"); }
+            } catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
+        }
+        public void deleteNote()
+        {
+            string title, content;
+            List<NoteEntry> Notes = new List<NoteEntry>();
+
+            Console.WriteLine("\n  Secure Notes");
+            Console.WriteLine("===Delete Note===");
+            Console.Write("Enter title: ");
+            title = Console.ReadLine();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader("notes.txt"))
+                {
+                    string line;
+                    bool found = false;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 2 && parts[0] != title)
+                        {
+                            Notes.Add(new NoteEntry
+                            {
+                                Title = parts[0],
+                                Content = parts[1]
+                            });
+                        }
+                        else if (parts.Length == 2 && parts[0] == title) found = true;
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("No note found for that title.\n");
+                    }
+
+                }
+            }
+            catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("notes.txt"))
+                {
+                    foreach (NoteEntry entry in Notes) { writer.WriteLine($"{entry.Title}|{entry.Content}"); }
+                }
+            }
+            catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
         }
     }
 }

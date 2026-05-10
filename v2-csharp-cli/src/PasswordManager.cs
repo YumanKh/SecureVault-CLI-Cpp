@@ -102,7 +102,7 @@ namespace SecureVault
                     }
                     if (!found) { Console.WriteLine("No password found for that site and username.\n"); }
                 }
-            } catch(Exception) { Console.WriteLine("Error reading passwords file.\n"); }
+            } catch(Exception) { Console.WriteLine("Error: file not found.\n"); }
         }
         public void listPassword()
         {
