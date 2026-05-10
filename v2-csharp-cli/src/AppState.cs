@@ -10,6 +10,7 @@ namespace SecureVault
         PASSWORD_MANAGER,
         PASSWORD_STRENGTH_ANALYZER,
         PASSWORD_GENERATOR,
+        SECURE_NOTES,
         QUIT,
     }
 }

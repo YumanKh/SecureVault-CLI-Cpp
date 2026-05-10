@@ -16,6 +16,36 @@ namespace SecureVault
 
         public void handleSecureNotes()
         {
+            int input = -1;
+            Console.WriteLine("\n Secure Notes");
+            Console.WriteLine("===Secure-Vault===");
+            Console.WriteLine("[1] Add Note");
+            Console.WriteLine("[2] Get Note");
+            Console.WriteLine("[3] List Note");
+            Console.WriteLine("[4] Delete Note");
+            Console.WriteLine("[0] Return to menu\n");
+
+            try { input = int.Parse(Console.ReadLine() ); } 
+            catch (Exception) { Console.WriteLine("Invalid input.\n");}
+
+            switch (input)
+            {
+                case 0:
+                    App.state = AppState.MAIN_MENU;
+                    break;
+                case 1:
+                    addNote();
+                    break;
+                case 2:
+                    getNote();
+                    break;
+                case 3:
+                    listNotes();
+                    break;
+                case 4:
+                    deleteNote();
+                    break;
+            }
 
         }
         public void addNote()

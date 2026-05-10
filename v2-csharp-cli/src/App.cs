@@ -46,6 +46,9 @@ namespace SecureVault
                 case 3:
                     state = AppState.PASSWORD_GENERATOR;
                     break;
+                case 4:
+                    state = AppState.SECURE_NOTES;
+                    break;
             }
         }
         public void Run()
@@ -58,7 +61,7 @@ namespace SecureVault
                 else if (state == AppState.PASSWORD_MANAGER) { new PasswordManager().handlePasswordManager(); }
                 else if (state == AppState.PASSWORD_STRENGTH_ANALYZER) { new PasswordStrengthAnalyzer().handlePasswordStrengthAnalyzer(); }
                 else if (state == AppState.PASSWORD_GENERATOR) { new PasswordGenerator().handlePasswordGenerator(); }
-
+                else if (state == AppState.SECURE_NOTES) { new SecureNotes().handleSecureNotes(); }
             }
         }
     }
